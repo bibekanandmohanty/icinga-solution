@@ -12,7 +12,7 @@ node('R10k') {
     }
     stage ('create rpm') {
       echo 'Generating Icinga rules rpm'  
-      sh "fpm -s dir -t rpm -d icinga2-common -n mobi-icinga-solution-rules-${env.BRANCH_NAME} --prefix /etc/icinga2/conf.d -v 1.0 --iteration `git rev-list HEAD --count` --directories ${env.BRANCH_NAME}-commands  --directories ${env.BRANCH_NAME}-hostgroups --directories ${env.BRANCH_NAME}-components ${env.BRANCH_NAME}-commands ${env.BRANCH_NAME}-hostgroups ${env.BRANCH_NAME}" 
+      sh "fpm -s dir -t rpm -d icinga2-common -n mobi-icinga-solution-rules-${env.BRANCH_NAME} --prefix /etc/icinga2/conf.d -v 1.0 --iteration `git rev-list HEAD --count` --directories ${env.BRANCH_NAME}-commands  --directories ${env.BRANCH_NAME}-hostgroups --directories ${env.BRANCH_NAME} ${env.BRANCH_NAME}-commands ${env.BRANCH_NAME}-hostgroups ${env.BRANCH_NAME}" 
     }
 
     stage ('publish rpm to pulp') {
